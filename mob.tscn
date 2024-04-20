@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4r4l6qp17abf"]
+
+[ext_resource type="Texture2D" uid="uid://dh8unev4aavrs" path="res://Ghost-fury/ghost-fury-1.png" id="1_0l1mm"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ot62i"]
+[ext_resource type="Texture2D" uid="uid://d1yiku1v60iu4" path="res://Ghost-fury/ghost-fury-2.png" id="2_0le4d"]
+[ext_resource type="Texture2D" uid="uid://d3ahyes1wiyyw" path="res://SteringEnemy/ghost1.png" id="3_qoajc"]
+[ext_resource type="Texture2D" uid="uid://4kaciugrx5f4" path="res://SteringEnemy/ghost2.png" id="4_me1lm"]
+[ext_resource type="Texture2D" uid="uid://do84i1bgl2r4i" path="res://SteringEnemy/ghost3.png" id="5_34mxq"]
+[ext_resource type="Texture2D" uid="uid://c2dvrbb120i1l" path="res://SteringEnemy/ghost4.png" id="6_ahumd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_60oun"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0l1mm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0le4d")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qoajc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_me1lm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_34mxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ahumd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt2mr"]
+radius = 15.4995
+height = 36.1326
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ot62i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_60oun")
+animation = &"walk"
+frame_progress = 0.669559
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 0.204204
+shape = SubResource("CapsuleShape2D_gt2mr")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+metadata/_edit_group_ = true

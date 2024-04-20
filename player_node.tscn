@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnj7ntoe78e40"]
+
+[ext_resource type="Texture2D" uid="uid://ivu3ngiugkxg" path="res://Player-jump/player-jump1.png" id="1_opjkq"]
+[ext_resource type="Script" path="res://player_node.gd" id="1_xmme7"]
+[ext_resource type="Texture2D" uid="uid://fe4tp2ksjanf" path="res://Player-jump/player-jump2.png" id="2_hctmn"]
+[ext_resource type="Texture2D" uid="uid://br3f3q4dci1ob" path="res://player-run/player-run1.png" id="3_uop82"]
+[ext_resource type="Texture2D" uid="uid://5yw8nwf8ekeh" path="res://player-run/player-run2.png" id="4_y18e0"]
+[ext_resource type="Texture2D" uid="uid://bjw8qxjsax51l" path="res://player-run/player-run3.png" id="5_sgo5i"]
+[ext_resource type="Texture2D" uid="uid://c7oxbqjabsgvv" path="res://player-run/player-run4.png" id="6_0qgyh"]
+[ext_resource type="Texture2D" uid="uid://7k0cvoievo13" path="res://player-run/player-run5.png" id="7_vek85"]
+[ext_resource type="Texture2D" uid="uid://dyeu4u8w3u2i0" path="res://player-run/player-run6.png" id="8_77ies"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmegj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_opjkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hctmn")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uop82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y18e0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sgo5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0qgyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vek85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_77ies")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7xeew"]
+radius = 26.0
+height = 62.0
+
+[node name="Player" type="Area2D"]
+position = Vector2(-1, 3)
+script = ExtResource("1_xmme7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jmegj")
+animation = &"walk"
+frame_progress = 0.0688603
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_7xeew")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
